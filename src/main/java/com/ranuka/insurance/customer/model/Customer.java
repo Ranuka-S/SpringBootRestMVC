@@ -2,9 +2,17 @@ package com.ranuka.insurance.customer.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
-		
-	private long id;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private Date dateOfBirth;
@@ -20,7 +28,7 @@ public class Customer {
 	public Customer() {
 		super();
 	}
-	public Customer(long id, String firstName, String lastName, Date dateOfBirth) {
+	public Customer(Long id, String firstName, String lastName, Date dateOfBirth) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -28,10 +36,10 @@ public class Customer {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getFirstName() {

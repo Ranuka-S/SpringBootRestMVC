@@ -26,7 +26,7 @@ public class CustomerControllerImpl implements CustomerController{
 	}
 
 	@Override
-	public Customer getCustomer(@PathVariable long id) {
+	public Customer getCustomer(@PathVariable Long id) {
 		return customerService.getCustomer(id);
 	}
 
@@ -41,8 +41,8 @@ public class CustomerControllerImpl implements CustomerController{
 	}
 
 	@Override
-	public Customer deleteCuctomer(long id) {
-		return customerService.deleteCustomer(id);
+	public void deleteCuctomer(Long id) {
+		customerService.deleteCustomer(id);
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.ranuka.insurance.repository;
 
-public interface CustomerRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import com.ranuka.insurance.customer.model.Customer;
+
+public interface CustomerRepository extends CrudRepository<Customer, Long>{
 
 }

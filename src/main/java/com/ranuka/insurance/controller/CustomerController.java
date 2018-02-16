@@ -20,7 +20,7 @@ public interface CustomerController {
 	public List<Customer> getCustomers();
 	
 	@GetMapping("/{id}")
-	public Customer getCustomer(@PathVariable long id);
+	public Customer getCustomer(@PathVariable Long id);
 	
 	@PostMapping
 	public Customer createCustomer(Customer customer);
@@ -29,5 +29,5 @@ public interface CustomerController {
 	public Customer updateCustomer(Customer customer);
 	
 	@DeleteMapping("/{id}")
-	public Customer deleteCuctomer(long id);
+	public void deleteCuctomer(Long id);
 }

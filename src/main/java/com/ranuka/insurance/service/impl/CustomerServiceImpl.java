@@ -9,46 +9,45 @@ import java.util.List;
 
 import javax.ws.rs.NotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ranuka.insurance.customer.model.Customer;
+import com.ranuka.insurance.repository.CustomerRepository;
 import com.ranuka.insurance.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
 	
-	List<Customer> customerList = new ArrayList<>(Arrays.asList(
-			new Customer(1, "Ranuka", "De Silva",Date.from(LocalDate.of(1985, 10, 15).atStartOfDay(ZoneId.systemDefault()).toInstant())),
-			new Customer(2, "Dilini", "Rajapaksha", Date.from(LocalDate.of(1984, 10, 10).atStartOfDay(ZoneId.systemDefault()).toInstant()))
-			));
+	@Autowired
+	private CustomerRepository customerRepository;
 
 	@Override
 	public List<Customer> getCustomers() {
-		return customerList;
+		List<Customer> customers =  new ArrayList<>();
+		customerRepository.findAll().forEach(customers::add);
+		//customers.add(new Customer(1l, "Ranuka", "De Silva",Date.from(LocalDate.of(1985, 10, 15).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+		return customers;
 	}
 
 	@Override
 	public Customer getCustomer(long id) {
-		
-		return customerList.stream().filter(p -> p.getId()==id).findFirst().orElseThrow(NotFoundException::new);
+		return customerRepository.findOne(id);
 	}
 
 	@Override
 	public Customer createCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerRepository.save(customer);
 	}
 
 	@Override
 	public Customer updateCustomer(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerRepository.save(customer);
 	}
 
 	@Override
-	public Customer deleteCustomer(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deleteCustomer(long id) {
+		customerRepository.delete(id);
 	}
 	
 }
