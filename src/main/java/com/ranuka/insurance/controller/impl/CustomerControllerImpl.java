@@ -2,8 +2,9 @@ package com.ranuka.insurance.controller.impl;
 
 import java.util.List;
 
+import javax.ws.rs.QueryParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,6 @@ import com.ranuka.insurance.service.CustomerService;
 public class CustomerControllerImpl implements CustomerController{
 
 	@Autowired
-	//@Qualifier("")
 	CustomerService customerService;
 	
 	@Override
@@ -41,8 +41,14 @@ public class CustomerControllerImpl implements CustomerController{
 	}
 
 	@Override
-	public void deleteCuctomer(Long id) {
+	public void deleteCuctomer(@PathVariable Long id) {
 		customerService.deleteCustomer(id);
+	}
+
+	@Override
+	public Customer getCustomerByEmail(@QueryParam("email") String email) {
+		
+		return customerService.getCustomerByEmail(email);
 	}
 
 }
